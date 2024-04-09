@@ -7,7 +7,8 @@
 #include "bn_log.h"
 
 bool AABB(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2){
-    return x1 < x2 + w2 && x1 + w1 > x2 && y1 < y2 + h2 && y1 + h1 > y2;
+    //axis aligned bounding box collision detection, x and y are center points
+    return (x1 - w1/2 < x2 + w2/2 && x1 + w1/2 > x2 - w2/2 && y1 - h1/2 < y2 + h2/2 && y1 + h1/2 > y2 - h2/2);
 }
 
 int main()
@@ -35,7 +36,7 @@ int main()
     //camera
     // bn::camera_ptr camera = bn::camera_ptr::create(0, 0);
 
-    Player player(pc, 0, 0, 32, 32, camera);
+    Player player(pc, 0, 0, 25, 25, camera);
 
     while(true)
     {
@@ -53,57 +54,61 @@ int main()
             //for every interactable object
             for(int i = 0; i < interactables.size(); i++){
                 //if the player is colliding with the interactable object
-                if(AABB(x - 1, y, 32, 32, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
+                if(AABB(x - 1, y, player.getWidth(), player.getHeight(), interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
                     //set player's collided text to the interactable object's collided text
                     player.setCollidedText(interactables[i].getCollidedText());
                     canMove = false;
                     break;
                 }
             }
+            player.spriteChange(2);
             if(canMove){
-                player.moveRequest(x - 1, y, 2);
+                player.moveRequest(x - 1, y);
                 player.clearText();
             }
         }
         else if( bn::keypad::right_held() )
         {
             for(int i = 0; i < interactables.size(); i++){
-                if(AABB(x + 1, y, 32, 32, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
+                if(AABB(x + 1, y, player.getWidth(), player.getHeight(), interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
                     player.setCollidedText(interactables[i].getCollidedText());
                     canMove = false;
                     break;
                 }
             }
+            player.spriteChange(0);
             if(canMove){
-                player.moveRequest(x + 1, y, 0);
+                player.moveRequest(x + 1, y);
                 player.clearText();
             }
         }
         else if( bn::keypad::up_held() )
         {
             for(int i = 0; i < interactables.size(); i++){
-                if(AABB(x, y - 1, 32, 32, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
+                if(AABB(x, y - 1, player.getWidth(), player.getHeight(), interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
                     player.setCollidedText(interactables[i].getCollidedText());
                     canMove = false;
                     break;
                 }
             }
+            player.spriteChange(3);
             if(canMove){
-                player.moveRequest(x, y - 1, 3);
+                player.moveRequest(x, y - 1);
                 player.clearText();
             }
         }
         else if( bn::keypad::down_held() )
         {
             for(int i = 0; i < interactables.size(); i++){
-                if(AABB(x, y + 1, 32, 32, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
+                if(AABB(x, y + 1, player.getWidth(), player.getHeight(), interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
                     player.setCollidedText(interactables[i].getCollidedText());
                     canMove = false;
                     break;
                 }
             }
+            player.spriteChange(1);
             if(canMove){
-                player.moveRequest(x, y + 1, 1);
+                player.moveRequest(x, y + 1);
                 player.clearText();
             }
         }

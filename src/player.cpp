@@ -22,11 +22,7 @@ class Player {
             _sprite.set_position(_x, _y);
         }
 
-        void moveRequest(int x, int y, int dir){
-            //for dir, 0 is right, 1 is down, 2 is left, 3 is up
-            _sprite.set_position(x, y);
-            playerSetPosition(x, y);
-            _camera.set_position(x, y);
+        void spriteChange(int dir){
             switch (dir)
             {
             case 0:
@@ -72,7 +68,11 @@ class Player {
             default:
                 break;
             }
+        }
 
+        void moveRequest(int x, int y){
+            //for dir, 0 is right, 1 is down, 2 is left, 3 is up
+            playerSetPosition(x, y);
         }
 
         void clearText(){
@@ -115,6 +115,7 @@ class Player {
             _x = x;
             _y = y;
             _sprite.set_position(_x, _y);
+            _camera.set_position(_x, _y);
         }
 
 };
