@@ -1,6 +1,6 @@
-main.o: C:/Users/jonah/GBA_01/template/src/main.cpp \
- C:/Users/jonah/GBA_01/template/src/player.cpp \
- C:/Users/jonah/GBA_01/template/src/interactable.cpp \
+main.o: C:/Users/jonah/GBA_01/ShiftGame/src/main.cpp \
+ C:/Users/jonah/GBA_01/ShiftGame/src/player.cpp \
+ C:/Users/jonah/GBA_01/ShiftGame/src/interactable.cpp \
  C:/Users/jonah/butano/butano/include/bn_core.h \
  C:/Users/jonah/butano/butano/include/bn_span.h \
  C:/Users/jonah/butano/butano/include/bn_array.h \
@@ -42,7 +42,7 @@ main.o: C:/Users/jonah/GBA_01/template/src/main.cpp \
  C:/Users/jonah/butano/butano/include/bn_display.h \
  C:/Users/jonah/butano/butano/include/bn_size.h \
  C:/Users/jonah/butano/butano/hw/include/bn_hw_display_constants.h \
- C:/Users/jonah/GBA_01/template/build/bn_sprite_items_basic2.h \
+ C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_basic2.h \
  C:/Users/jonah/butano/butano/include/bn_sprite_item.h \
  C:/Users/jonah/butano/butano/include/bn_sprite_shape_size.h \
  C:/Users/jonah/butano/butano/include/bn_bpp_mode.h \
@@ -65,24 +65,24 @@ main.o: C:/Users/jonah/GBA_01/template/src/main.cpp \
  C:/Users/jonah/butano/butano/include/bn_utf8_characters_map_ref.h \
  C:/Users/jonah/butano/butano/include/bn_power_of_two.h \
  C:/Users/jonah/butano/butano/include/bn_utf8_character.h \
- C:/Users/jonah/GBA_01/template/build/bn_regular_bg_items_bg.h \
+ C:/Users/jonah/GBA_01/ShiftGame/build/bn_regular_bg_items_bg.h \
  C:/Users/jonah/butano/butano/include/bn_regular_bg_item.h \
  C:/Users/jonah/butano/butano/include/bn_bg_palette_item.h \
  C:/Users/jonah/butano/butano/include/bn_regular_bg_map_item.h \
  C:/Users/jonah/butano/butano/include/bn_regular_bg_map_cell.h \
  C:/Users/jonah/butano/butano/include/bn_regular_bg_tiles_item.h \
  C:/Users/jonah/butano/butano/include/bn_regular_bg_ptr.h \
- C:/Users/jonah/GBA_01/template/build/bn_sprite_items_basic.h \
+ C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_basic.h \
  C:/Users/jonah/butano/common/include/common_info.h \
  C:/Users/jonah/butano/butano/include/bn_span.h \
  C:/Users/jonah/butano/butano/include/bn_string_view.h \
  C:/Users/jonah/butano/common/include/common_variable_8x8_sprite_font.h \
  C:/Users/jonah/butano/butano/include/bn_sprite_font.h \
  C:/Users/jonah/butano/butano/include/bn_utf8_characters_map.h \
- C:/Users/jonah/GBA_01/template/build/bn_sprite_items_common_variable_8x8_font.h \
+ C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_common_variable_8x8_font.h \
  C:/Users/jonah/butano/butano/include/bn_log.h
-C:/Users/jonah/GBA_01/template/src/player.cpp:
-C:/Users/jonah/GBA_01/template/src/interactable.cpp:
+C:/Users/jonah/GBA_01/ShiftGame/src/player.cpp:
+C:/Users/jonah/GBA_01/ShiftGame/src/interactable.cpp:
 C:/Users/jonah/butano/butano/include/bn_core.h:
 C:/Users/jonah/butano/butano/include/bn_span.h:
 C:/Users/jonah/butano/butano/include/bn_array.h:
@@ -124,7 +124,7 @@ C:/Users/jonah/butano/butano/include/bn_sprite_tiles_ptr.h:
 C:/Users/jonah/butano/butano/include/bn_display.h:
 C:/Users/jonah/butano/butano/include/bn_size.h:
 C:/Users/jonah/butano/butano/hw/include/bn_hw_display_constants.h:
-C:/Users/jonah/GBA_01/template/build/bn_sprite_items_basic2.h:
+C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_basic2.h:
 C:/Users/jonah/butano/butano/include/bn_sprite_item.h:
 C:/Users/jonah/butano/butano/include/bn_sprite_shape_size.h:
 C:/Users/jonah/butano/butano/include/bn_bpp_mode.h:
@@ -147,19 +147,19 @@ C:/Users/jonah/butano/butano/include/bn_sprite_item.h:
 C:/Users/jonah/butano/butano/include/bn_utf8_characters_map_ref.h:
 C:/Users/jonah/butano/butano/include/bn_power_of_two.h:
 C:/Users/jonah/butano/butano/include/bn_utf8_character.h:
-C:/Users/jonah/GBA_01/template/build/bn_regular_bg_items_bg.h:
+C:/Users/jonah/GBA_01/ShiftGame/build/bn_regular_bg_items_bg.h:
 C:/Users/jonah/butano/butano/include/bn_regular_bg_item.h:
 C:/Users/jonah/butano/butano/include/bn_bg_palette_item.h:
 C:/Users/jonah/butano/butano/include/bn_regular_bg_map_item.h:
 C:/Users/jonah/butano/butano/include/bn_regular_bg_map_cell.h:
 C:/Users/jonah/butano/butano/include/bn_regular_bg_tiles_item.h:
 C:/Users/jonah/butano/butano/include/bn_regular_bg_ptr.h:
-C:/Users/jonah/GBA_01/template/build/bn_sprite_items_basic.h:
+C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_basic.h:
 C:/Users/jonah/butano/common/include/common_info.h:
 C:/Users/jonah/butano/butano/include/bn_span.h:
 C:/Users/jonah/butano/butano/include/bn_string_view.h:
 C:/Users/jonah/butano/common/include/common_variable_8x8_sprite_font.h:
 C:/Users/jonah/butano/butano/include/bn_sprite_font.h:
 C:/Users/jonah/butano/butano/include/bn_utf8_characters_map.h:
-C:/Users/jonah/GBA_01/template/build/bn_sprite_items_common_variable_8x8_font.h:
+C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_common_variable_8x8_font.h:
 C:/Users/jonah/butano/butano/include/bn_log.h:
