@@ -2,6 +2,7 @@
 #include "bn_regular_bg_items_bg.h"
 #include "bn_regular_bg_ptr.h"
 #include "bn_sprite_items_basic.h"
+#include "bn_sprite_items_psprite.h"
 #include "common_info.h"
 #include "common_variable_8x8_sprite_font.h"
 #include "bn_log.h"
@@ -19,7 +20,8 @@ int main()
     bn::vector<bn::sprite_ptr, 128> text_sprites;
 
     bn::regular_bg_ptr bg = bn::regular_bg_items::bg.create_bg(0, 0);
-    bn::sprite_ptr pc = bn::sprite_items::basic2.create_sprite(0, 0);
+    bn::sprite_ptr psprite = bn::sprite_items::psprite.create_sprite(0, 0);
+
     bn::camera_ptr camera = bn::camera_ptr::create(0, 0);
     bn::sprite_ptr interact = bn::sprite_items::basic.create_sprite(100, 0);
 
@@ -29,14 +31,14 @@ int main()
     interactables.push_back(interactable1);
 
     bg.set_camera(camera);
-    pc.set_camera(camera);
+    psprite.set_camera(camera);
     interact.set_camera(camera);
 
 
     //camera
     // bn::camera_ptr camera = bn::camera_ptr::create(0, 0);
 
-    Player player(pc, 0, 0, 25, 25, camera);
+    Player player(psprite, 0, 0, 14, 20, camera);
 
     while(true)
     {
@@ -111,6 +113,12 @@ int main()
                 player.moveRequest(x, y + 1);
                 player.clearText();
             }
+        }
+        else{
+            player.standing();
+        }
+        if(!canMove){
+            player.standing();
         }
 
         //checking player interaction with collidable objects

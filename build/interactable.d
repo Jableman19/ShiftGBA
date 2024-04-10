@@ -40,15 +40,6 @@ interactable.o: C:/Users/jonah/GBA_01/ShiftGame/src/interactable.cpp \
  C:/Users/jonah/butano/butano/include/bn_display.h \
  C:/Users/jonah/butano/butano/include/bn_size.h \
  C:/Users/jonah/butano/butano/hw/include/bn_hw_display_constants.h \
- C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_basic2.h \
- C:/Users/jonah/butano/butano/include/bn_sprite_item.h \
- C:/Users/jonah/butano/butano/include/bn_sprite_shape_size.h \
- C:/Users/jonah/butano/butano/include/bn_bpp_mode.h \
- C:/Users/jonah/butano/butano/include/bn_sprite_tiles_item.h \
- C:/Users/jonah/butano/butano/include/bn_tile.h \
- C:/Users/jonah/butano/butano/include/bn_compression_type.h \
- C:/Users/jonah/butano/butano/include/bn_sprite_palette_item.h \
- C:/Users/jonah/butano/butano/include/bn_color.h \
  C:/Users/jonah/butano/butano/include/bn_time.h \
  C:/Users/jonah/butano/butano/include/bn_optional_fwd.h \
  C:/Users/jonah/butano/butano/include/bn_keypad.h \
@@ -97,15 +88,6 @@ C:/Users/jonah/butano/butano/include/bn_sprite_tiles_ptr.h:
 C:/Users/jonah/butano/butano/include/bn_display.h:
 C:/Users/jonah/butano/butano/include/bn_size.h:
 C:/Users/jonah/butano/butano/hw/include/bn_hw_display_constants.h:
-C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_basic2.h:
-C:/Users/jonah/butano/butano/include/bn_sprite_item.h:
-C:/Users/jonah/butano/butano/include/bn_sprite_shape_size.h:
-C:/Users/jonah/butano/butano/include/bn_bpp_mode.h:
-C:/Users/jonah/butano/butano/include/bn_sprite_tiles_item.h:
-C:/Users/jonah/butano/butano/include/bn_tile.h:
-C:/Users/jonah/butano/butano/include/bn_compression_type.h:
-C:/Users/jonah/butano/butano/include/bn_sprite_palette_item.h:
-C:/Users/jonah/butano/butano/include/bn_color.h:
 C:/Users/jonah/butano/butano/include/bn_time.h:
 C:/Users/jonah/butano/butano/include/bn_optional_fwd.h:
 C:/Users/jonah/butano/butano/include/bn_keypad.h:

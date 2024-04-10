@@ -6,7 +6,6 @@
 #include <bn_sprite_ptr.h>
 #include <bn_sprite_tiles_ptr.h>
 #include "bn_display.h"
-#include "bn_sprite_items_basic2.h"
 #include <bn_time.h>
 #include <bn_keypad.h>
 #include <bn_camera_ptr.h>
