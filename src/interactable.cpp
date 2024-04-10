@@ -19,16 +19,25 @@ class Interactable {
         int _y;
         int _width;
         int _height;
-        bn::string<128> _collidedText;
+        bn::string<128> _collidedText1;
+        bn::string<128> _collidedText2;
 
     public:
 
-        Interactable(bn::sprite_ptr sprite, int x, int y, int width, int height, bn::string<128> collidedText) : _sprite(sprite), _x(x), _y(y), _width(width), _height(height), _collidedText(collidedText) {
+        Interactable(bn::sprite_ptr sprite, int x, int y, int width, int height,
+         bn::string<128> collidedText1, bn::string<128> collidedText2 )
+          : _sprite(sprite), _x(x), _y(y), _width(width), _height(height),
+           _collidedText1(collidedText1), _collidedText2(collidedText2) {
             _sprite.set_position(_x, _y);
         }
 
-        bn::string<128> getCollidedText(){
-            return _collidedText;
+        //get collided texts
+        bn::string<128> getCollidedText1(){
+            return _collidedText1;
+        }
+
+        bn::string<128> getCollidedText2(){
+            return _collidedText2;
         }
 
         int getX(){

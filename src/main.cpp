@@ -1,11 +1,20 @@
 #include "player.cpp"
 #include "bn_regular_bg_items_bg.h"
+#include "bn_regular_bg_items_shift.h"
 #include "bn_regular_bg_ptr.h"
 #include "bn_sprite_items_basic.h"
 #include "bn_sprite_items_psprite.h"
+#include "bn_sprite_items_textl.h"
+#include "bn_sprite_items_textm.h"
+#include "bn_sprite_items_textr.h"
 #include "common_info.h"
 #include "common_variable_8x8_sprite_font.h"
 #include "bn_log.h"
+#include <bn_sprite_palette_item.h>
+#include <bn_sprite_palette_ptr.h>
+#include <bn_color.h>
+#include <bn_compression_type.h>
+#include <bn_bpp_mode.h>
 
 bool AABB(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2){
     //axis aligned bounding box collision detection, x and y are center points
@@ -16,19 +25,63 @@ int main()
 {
     bn::core::init();
 
-    bn::sprite_text_generator text_generator(common::variable_8x8_sprite_font);
-    bn::vector<bn::sprite_ptr, 128> text_sprites;
+    bn::regular_bg_ptr intro_show = bn::regular_bg_items::shift.create_bg(0, 0);
 
-    bn::regular_bg_ptr bg = bn::regular_bg_items::bg.create_bg(0, 0);
-    bn::sprite_ptr psprite = bn::sprite_items::psprite.create_sprite(0, 0);
+    while(!bn::keypad::b_pressed() && !bn::keypad::a_pressed() && !bn::keypad::start_pressed()){
+        bn::core::update();
+    }
 
-    bn::camera_ptr camera = bn::camera_ptr::create(0, 0);
+    intro_show.set_visible(false);
+
     bn::sprite_ptr interact = bn::sprite_items::basic.create_sprite(100, 0);
 
-    Interactable interactable1(interact, 100, 0, 32, 32, "I'm just a box! but i could be anything!");
+    bn::sprite_ptr psprite = bn::sprite_items::psprite.create_sprite(0, 0);
+    Interactable interactable1(interact, 100, 0, 32, 32, "I'm just a box! but i could be anything!", "Line 2 is awesome!!");
 
     bn::vector<Interactable, 32> interactables;
     interactables.push_back(interactable1);
+
+    bn::sprite_text_generator text_generator(common::variable_8x8_sprite_font);
+
+   //text color with 16 colors
+    bn::color textColor[] = {
+        bn::color(30, 30, 30),
+        bn::color(0,0,0),//X
+        bn::color(0,0,0),//X
+        bn::color(0,0,0),//X
+        bn::color(0,0,0),//X
+        bn::color(0,0,0),//X
+        bn::color(0,0,0),//X
+        bn::color(0,0,0),//X
+        bn::color(0,0,0),//X
+        bn::color(0,0,0),//X
+        bn::color(0,0,0),//X
+        bn::color(0,0,0),//X
+        bn::color(28,28,28),//OUTLINE
+        bn::color(0,0,0),//X
+        bn::color(22.5,22.5,26.6),//TEXT
+        bn::color(31,31,31),
+    };
+
+    text_generator.set_palette_item(bn::sprite_palette_item(bn::span<const bn::color>(textColor, 16), bn::bpp_mode::BPP_4, bn::compression_type::NONE));
+    bn::vector<bn::sprite_ptr, 128> text_sprites;
+
+    bn::regular_bg_ptr bg = bn::regular_bg_items::bg.create_bg(0, 0);
+
+
+    bn::sprite_ptr text_l = bn::sprite_items::textl.create_sprite(-88, -48);
+    bn::sprite_ptr text_m = bn::sprite_items::textm.create_sprite(-44, -48);
+    bn::sprite_ptr text_m_2 = bn::sprite_items::textm.create_sprite(44, -48);
+    bn::sprite_ptr text_m_3 = bn::sprite_items::textm.create_sprite(0, -48);
+    bn::sprite_ptr text_r = bn::sprite_items::textr.create_sprite(88, -48);
+    //set text box to invisible
+    text_l.set_visible(false);
+    text_m.set_visible(false);
+    text_m_2.set_visible(false);
+    text_m_3.set_visible(false);
+    text_r.set_visible(false);
+
+    bn::camera_ptr camera = bn::camera_ptr::create(0, 0);
 
     bg.set_camera(camera);
     psprite.set_camera(camera);
@@ -56,9 +109,10 @@ int main()
             //for every interactable object
             for(int i = 0; i < interactables.size(); i++){
                 //if the player is colliding with the interactable object
-                if(AABB(x - 1, y, player.getWidth(), player.getHeight(), interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
+                if(AABB(x - 1, y + 7, player.getWidth(), player.getHeight() - 14, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
                     //set player's collided text to the interactable object's collided text
-                    player.setCollidedText(interactables[i].getCollidedText());
+                    player.setCollidedText1(interactables[i].getCollidedText1());
+                    player.setCollidedText2(interactables[i].getCollidedText2());
                     canMove = false;
                     break;
                 }
@@ -72,8 +126,9 @@ int main()
         else if( bn::keypad::right_held() )
         {
             for(int i = 0; i < interactables.size(); i++){
-                if(AABB(x + 1, y, player.getWidth(), player.getHeight(), interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
-                    player.setCollidedText(interactables[i].getCollidedText());
+                if(AABB(x + 1, y + 7, player.getWidth(), player.getHeight() - 14, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
+                    player.setCollidedText1(interactables[i].getCollidedText1());
+                    player.setCollidedText2(interactables[i].getCollidedText2());
                     canMove = false;
                     break;
                 }
@@ -87,8 +142,9 @@ int main()
         else if( bn::keypad::up_held() )
         {
             for(int i = 0; i < interactables.size(); i++){
-                if(AABB(x, y - 1, player.getWidth(), player.getHeight(), interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
-                    player.setCollidedText(interactables[i].getCollidedText());
+                if(AABB(x, y + 6, player.getWidth(), player.getHeight() - 14, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
+                    player.setCollidedText1(interactables[i].getCollidedText1());
+                    player.setCollidedText2(interactables[i].getCollidedText2());
                     canMove = false;
                     break;
                 }
@@ -102,8 +158,9 @@ int main()
         else if( bn::keypad::down_held() )
         {
             for(int i = 0; i < interactables.size(); i++){
-                if(AABB(x, y + 1, player.getWidth(), player.getHeight(), interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
-                    player.setCollidedText(interactables[i].getCollidedText());
+                if(AABB(x, y + 6, player.getWidth(), player.getHeight() - 10, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
+                    player.setCollidedText1(interactables[i].getCollidedText1());
+                            player.setCollidedText2(interactables[i].getCollidedText2());
                     canMove = false;
                     break;
                 }
@@ -122,12 +179,20 @@ int main()
         }
 
         //checking player interaction with collidable objects
-        if( bn::keypad::a_pressed() && !player.getCollidedText().empty())
+        if( bn::keypad::a_pressed() && !player.getCollidedText1().empty())
         {
+            //create text box at top of screen 
+            text_l.set_visible(true);
+            text_m.set_visible(true);
+            text_r.set_visible(true);
+            text_m_2.set_visible(true);
+            text_m_3.set_visible(true);
             //use text generator to display player's collided text
             text_sprites.clear();
             text_generator.set_center_alignment();
-            text_generator.generate(0, -60, player.getCollidedText(), text_sprites);
+            text_generator.generate(0, -65, player.getCollidedText1(), text_sprites);
+            text_generator.generate(0, -50, player.getCollidedText2(), text_sprites);
+
             //log the collided text
             // BN_LOG(player.getCollidedText());
             bn::core::update();
@@ -135,6 +200,11 @@ int main()
                 bn::core::update();
             }
             text_sprites.clear();
+            text_l.set_visible(false);
+            text_m.set_visible(false);
+            text_r.set_visible(false);
+            text_m_2.set_visible(false);
+            text_m_3.set_visible(false);
 
         }
 

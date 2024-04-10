@@ -14,7 +14,8 @@ class Player {
         int _lastSprite = 0;
         int _lastDir = 0;
         bn::camera_ptr _camera;
-        bn::string<128> _collidedText;
+        bn::string<128> _collidedText1;
+        bn::string<128> _collidedText2;
 
     public:
 
@@ -173,15 +174,20 @@ class Player {
         }
 
         void clearText(){
-            _collidedText.clear();
+            _collidedText1.clear();
+            _collidedText2.clear();
         }
 
         int getLastSprite(){
             return _lastSprite;
         }
 
-        void setCollidedText(bn::string<128> text){
-            _collidedText = text;
+        void setCollidedText1(bn::string<128> text){
+            _collidedText1 = text;
+        }
+
+        void setCollidedText2(bn::string<128> text){
+            _collidedText2 = text;
         }
 
         int getPositionX(){
@@ -204,8 +210,12 @@ class Player {
             return _sprite;
         }
 
-        bn::string<128> getCollidedText(){
-            return _collidedText;
+        bn::string<128> getCollidedText1(){
+            return _collidedText1;
+        }
+
+        bn::string<128> getCollidedText2(){
+            return _collidedText2;
         }
 
         void playerSetPosition(int x, int y){
