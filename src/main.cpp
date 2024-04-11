@@ -1,5 +1,6 @@
 #include "player.cpp"
-#include "bn_regular_bg_items_bg.h"
+#include "collidingSpace.cpp"
+#include "bn_regular_bg_items_floor.h"
 #include "bn_regular_bg_items_shift.h"
 #include "bn_regular_bg_ptr.h"
 #include "bn_sprite_items_basic.h"
@@ -7,6 +8,12 @@
 #include "bn_sprite_items_textl.h"
 #include "bn_sprite_items_textm.h"
 #include "bn_sprite_items_textr.h"
+#include "bn_sprite_items_table.h"
+#include "bn_sprite_items_chair.h"
+#include "bn_sprite_items_couch.h"
+#include "bn_sprite_items_plant.h"
+#include "bn_sprite_items_coffee.h"
+#include "bn_sprite_items_bar.h"
 #include "common_info.h"
 #include "common_variable_8x8_sprite_font.h"
 #include "bn_log.h"
@@ -15,16 +22,15 @@
 #include <bn_color.h>
 #include <bn_compression_type.h>
 #include <bn_bpp_mode.h>
+#include <bn_window.h>
+#include "bn_rect_window.h"
 
 bool AABB(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2){
     //axis aligned bounding box collision detection, x and y are center points
     return (x1 - w1/2 < x2 + w2/2 && x1 + w1/2 > x2 - w2/2 && y1 - h1/2 < y2 + h2/2 && y1 + h1/2 > y2 - h2/2);
 }
 
-int main()
-{
-    bn::core::init();
-
+void intro(){
     bn::regular_bg_ptr intro_show = bn::regular_bg_items::shift.create_bg(0, 0);
 
     while(!bn::keypad::b_pressed() && !bn::keypad::a_pressed() && !bn::keypad::start_pressed()){
@@ -32,21 +38,74 @@ int main()
     }
 
     intro_show.set_visible(false);
+}
 
-    bn::sprite_ptr interact = bn::sprite_items::basic.create_sprite(100, 0);
+void entryway(){
+    bn::vector<CollidingSpace, 12> collidingSpaces;
 
-    bn::sprite_ptr psprite = bn::sprite_items::psprite.create_sprite(0, 0);
+    bn::camera_ptr camera = bn::camera_ptr::create(0, 0);
+    bn::sprite_ptr table1 = bn::sprite_items::table.create_sprite(120, 10);
+    bn::sprite_ptr table2 = bn::sprite_items::table.create_sprite(152, 10);
+    bn::sprite_ptr coffee = bn::sprite_items::coffee.create_sprite(160, -95);
+    CollidingSpace collidingSpace1(160, -95, 12, 25);
+    collidingSpaces.push_back(collidingSpace1);
+    coffee.set_camera(camera);
 
-    Dialogue dialogue1("I'm just a box! but i could be anything!", "Line 2 is awesome!!");
-    Dialogue dialogue2("I'm More than a box!!!!" , "");
-    bn::vector<Dialogue, 5> dialogues1;
+
+
+    Dialogue dialogue1("These tables are the center of this house.", "FISIs, family dinners, late nights...");
+    Dialogue dialogue2("they serve as a place for us" , "to come together!");
+    bn::vector<Dialogue, 3> dialogues1;
     dialogues1.push_back(dialogue1);
     dialogues1.push_back(dialogue2);
-    Interactable interactable1(interact, 100, 0, 32, 32, dialogues1);
-
-    bn::vector<Interactable, 32> interactables;
+    Interactable interactable1(136, 10, 64, 32, dialogues1);
+    bn::vector<Interactable, 8> interactables;
     interactables.push_back(interactable1);
 
+
+    bn::sprite_ptr chair1 = bn::sprite_items::chair.create_sprite(179, 3);
+    bn::sprite_ptr chair2 = bn::sprite_items::chair.create_sprite(93, 3);
+    chair2.set_camera(camera);
+    chair2.set_horizontal_flip(true);
+    bn::vector<Dialogue, 3> dialogues2;
+    Dialogue dialogue3("These ratty, red chairs...", "So many past creators have sat here.");
+    Dialogue dialogue4("Some have even written poems about them!", "");
+    Dialogue dialogue5("May they live on in the next house", "");
+    dialogues2.push_back(dialogue3);
+    dialogues2.push_back(dialogue4);
+    dialogues2.push_back(dialogue5);
+    Interactable interactable2(93, 6, 14, 25, dialogues2);
+    interactables.push_back(interactable2);
+
+    bn::sprite_ptr couch = bn::sprite_items::couch.create_sprite(192, -95);
+    couch.set_camera(camera);
+    bn::vector<Dialogue, 3> dialogues3;
+    Dialogue dialogue6("Theres no way around it... this couch", "is ugly as sin - and just as gross.");
+    Dialogue dialogue7("But it's been here for years,", "and it's not going anywhere.");
+    Dialogue dialogue8("It's seen some serious shit", "");
+    dialogues3.push_back(dialogue6);
+    dialogues3.push_back(dialogue7);
+    dialogues3.push_back(dialogue8);
+    Interactable interactable3(192, -95, 16, 32, dialogues3);
+    interactables.push_back(interactable3);
+
+    bn::sprite_ptr plant = bn::sprite_items::plant.create_sprite(192, -120);
+    plant.set_camera(camera);
+    bn::vector<Dialogue, 3> dialogues4;
+    Dialogue dialogue9("Don't even get me started on this plant.", "SUCH a drama queen.");
+    dialogues4.push_back(dialogue9);
+    Interactable interactable4(192, -120, 16, 16, dialogues4);
+    interactables.push_back(interactable4);
+
+    bn::sprite_ptr bar = bn::sprite_items::bar.create_sprite(192, -40);
+    bar.set_camera(camera);
+    bn::vector<Dialogue, 3> dialogues5;
+    Dialogue dialogue10("I don't need to tell you what this is for.", "Just don't ask about the barmats...");
+    dialogues5.push_back(dialogue10);
+    Interactable interactable5(192,-40,16,32, dialogues5);
+    interactables.push_back(interactable5);
+
+    bn::sprite_ptr psprite = bn::sprite_items::psprite.create_sprite(0, 0);
     bn::sprite_text_generator text_generator(common::variable_8x8_sprite_font);
 
    //text color with 16 colors
@@ -70,16 +129,16 @@ int main()
     };
 
     text_generator.set_palette_item(bn::sprite_palette_item(bn::span<const bn::color>(textColor, 16), bn::bpp_mode::BPP_4, bn::compression_type::NONE));
-    bn::vector<bn::sprite_ptr, 128> text_sprites;
+    bn::vector<bn::sprite_ptr, 64> text_sprites;
 
-    bn::regular_bg_ptr bg = bn::regular_bg_items::bg.create_bg(0, 0);
+    bn::regular_bg_ptr bg = bn::regular_bg_items::floor.create_bg(0, 0);
 
 
-    bn::sprite_ptr text_l = bn::sprite_items::textl.create_sprite(-88, -48);
-    bn::sprite_ptr text_m = bn::sprite_items::textm.create_sprite(-44, -48);
-    bn::sprite_ptr text_m_2 = bn::sprite_items::textm.create_sprite(44, -48);
-    bn::sprite_ptr text_m_3 = bn::sprite_items::textm.create_sprite(0, -48);
-    bn::sprite_ptr text_r = bn::sprite_items::textr.create_sprite(88, -48);
+    bn::sprite_ptr text_l = bn::sprite_items::textl.create_sprite(-88, -49);
+    bn::sprite_ptr text_m = bn::sprite_items::textm.create_sprite(-44, -49);
+    bn::sprite_ptr text_m_2 = bn::sprite_items::textm.create_sprite(44, -49);
+    bn::sprite_ptr text_m_3 = bn::sprite_items::textm.create_sprite(0, -49);
+    bn::sprite_ptr text_r = bn::sprite_items::textr.create_sprite(88, -49);
     //set text box to invisible
     text_l.set_visible(false);
     text_m.set_visible(false);
@@ -87,15 +146,21 @@ int main()
     text_m_3.set_visible(false);
     text_r.set_visible(false);
 
-    bn::camera_ptr camera = bn::camera_ptr::create(0, 0);
 
     bg.set_camera(camera);
     psprite.set_camera(camera);
-    interact.set_camera(camera);
+    table1.set_camera(camera);
+    table2.set_camera(camera);
+    chair1.set_camera(camera);
 
 
-    //camera
-    // bn::camera_ptr camera = bn::camera_ptr::create(0, 0);
+    bn::window outside_window = bn::window::outside();
+    outside_window.set_show_bg(bg, false);
+
+    bn::rect_window entry_window = bn::rect_window::internal();
+    entry_window.set_boundaries(-230, -50, 50, 200);
+    entry_window.set_camera(camera);
+
 
     Player player(psprite, 0, 0, 14, 20, camera);
 
@@ -122,6 +187,14 @@ int main()
                     break;
                 }
             }
+            if(canMove){
+                for(int i = 0; i < collidingSpaces.size(); i++){
+                    if(AABB(x - 1, y + 7, player.getWidth(), player.getHeight() - 16, collidingSpaces[i]._x, collidingSpaces[i]._y, collidingSpaces[i]._width, collidingSpaces[i]._height)){
+                        canMove = false;
+                        break;
+                    }
+                }
+            }
             player.spriteChange(2);
             if(canMove){
                 player.moveRequest(x - 1, y);
@@ -135,6 +208,14 @@ int main()
                     player.setDialogues(interactables[i].getDialogues());
                     canMove = false;
                     break;
+                }
+            }
+            if(canMove){
+                for(int i = 0; i < collidingSpaces.size(); i++){
+                    if(AABB(x + 1, y + 7, player.getWidth(), player.getHeight() - 16, collidingSpaces[i]._x, collidingSpaces[i]._y, collidingSpaces[i]._width, collidingSpaces[i]._height)){
+                        canMove = false;
+                        break;
+                    }
                 }
             }
             player.spriteChange(0);
@@ -152,6 +233,14 @@ int main()
                     break;
                 }
             }
+            if(canMove){
+                for(int i = 0; i < collidingSpaces.size(); i++){
+                    if(AABB(x, y + 6, player.getWidth(), player.getHeight() - 16, collidingSpaces[i]._x, collidingSpaces[i]._y, collidingSpaces[i]._width, collidingSpaces[i]._height)){
+                        canMove = false;
+                        break;
+                    }
+                }
+            }
             player.spriteChange(3);
             if(canMove){
                 player.moveRequest(x, y - 1);
@@ -165,6 +254,14 @@ int main()
                     player.setDialogues(interactables[i].getDialogues());
                     canMove = false;
                     break;
+                }
+            }
+            if(canMove){
+                for(int i = 0; i < collidingSpaces.size(); i++){
+                    if(AABB(x, y + 8, player.getWidth(), player.getHeight() - 16, collidingSpaces[i]._x, collidingSpaces[i]._y, collidingSpaces[i]._width, collidingSpaces[i]._height)){
+                        canMove = false;
+                        break;
+                    }
                 }
             }
             player.spriteChange(1);
@@ -218,4 +315,13 @@ int main()
         }
 
     }
+}
+
+int main()
+{
+    bn::core::init();
+
+    intro();
+
+    entryway();
 }

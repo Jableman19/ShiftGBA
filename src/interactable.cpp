@@ -15,7 +15,6 @@
 
 class Interactable {
     private:
-        bn::sprite_ptr _sprite;
         int _x;
         int _y;
         int _width;
@@ -24,14 +23,12 @@ class Interactable {
 
     public:
 
-        Interactable(bn::sprite_ptr sprite, int x, int y, int width, int height,
-         bn::vector<Dialogue, 5> dialogues) : _sprite(sprite), _x(x), _y(y), _width(width), _height(height),
-           _dialogues(dialogues) {
-            _sprite.set_position(_x, _y);
-        }
+        Interactable(int x, int y, int width, int height,
+         bn::vector<Dialogue, 3> dialogues) : _x(x), _y(y), _width(width), _height(height),
+           _dialogues(dialogues) {}
 
         //get collided texts
-        bn::vector<Dialogue, 5> getDialogues(){
+        bn::vector<Dialogue, 3> getDialogues(){
             return _dialogues;
         }
 

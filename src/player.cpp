@@ -14,7 +14,7 @@ class Player {
         int _lastSprite = 0;
         int _lastDir = 0;
         bn::camera_ptr _camera;
-        bn::vector<Dialogue, 5> _dialogues;
+        bn::vector<Dialogue, 3> _dialogues;
 
     public:
 
