@@ -11,6 +11,7 @@
 #include <bn_camera_ptr.h>
 #include <bn_string.h>
 #include <bn_vector.h>
+#include "dialogue.cpp"
 
 class Interactable {
     private:
@@ -19,25 +20,19 @@ class Interactable {
         int _y;
         int _width;
         int _height;
-        bn::string<128> _collidedText1;
-        bn::string<128> _collidedText2;
+        bn::vector<Dialogue, 5> _dialogues;
 
     public:
 
         Interactable(bn::sprite_ptr sprite, int x, int y, int width, int height,
-         bn::string<128> collidedText1, bn::string<128> collidedText2 )
-          : _sprite(sprite), _x(x), _y(y), _width(width), _height(height),
-           _collidedText1(collidedText1), _collidedText2(collidedText2) {
+         bn::vector<Dialogue, 5> dialogues) : _sprite(sprite), _x(x), _y(y), _width(width), _height(height),
+           _dialogues(dialogues) {
             _sprite.set_position(_x, _y);
         }
 
         //get collided texts
-        bn::string<128> getCollidedText1(){
-            return _collidedText1;
-        }
-
-        bn::string<128> getCollidedText2(){
-            return _collidedText2;
+        bn::vector<Dialogue, 5> getDialogues(){
+            return _dialogues;
         }
 
         int getX(){

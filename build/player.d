@@ -48,6 +48,7 @@ player.o: C:/Users/jonah/GBA_01/ShiftGame/src/player.cpp \
  C:/Users/jonah/butano/butano/include/bn_string.h \
  C:/Users/jonah/butano/butano/include/bn_vector.h \
  C:/Users/jonah/butano/butano/include/bn_vector_fwd.h \
+ C:/Users/jonah/GBA_01/ShiftGame/src/dialogue.cpp \
  C:/Users/jonah/butano/butano/include/bn_sprite_text_generator.h \
  C:/Users/jonah/butano/butano/include/bn_vector.h \
  C:/Users/jonah/butano/butano/include/bn_sprite_font.h \
@@ -113,6 +114,7 @@ C:/Users/jonah/butano/butano/include/bn_camera_ptr.h:
 C:/Users/jonah/butano/butano/include/bn_string.h:
 C:/Users/jonah/butano/butano/include/bn_vector.h:
 C:/Users/jonah/butano/butano/include/bn_vector_fwd.h:
+C:/Users/jonah/GBA_01/ShiftGame/src/dialogue.cpp:
 C:/Users/jonah/butano/butano/include/bn_sprite_text_generator.h:
 C:/Users/jonah/butano/butano/include/bn_vector.h:
 C:/Users/jonah/butano/butano/include/bn_sprite_font.h:

@@ -36,7 +36,13 @@ int main()
     bn::sprite_ptr interact = bn::sprite_items::basic.create_sprite(100, 0);
 
     bn::sprite_ptr psprite = bn::sprite_items::psprite.create_sprite(0, 0);
-    Interactable interactable1(interact, 100, 0, 32, 32, "I'm just a box! but i could be anything!", "Line 2 is awesome!!");
+
+    Dialogue dialogue1("I'm just a box! but i could be anything!", "Line 2 is awesome!!");
+    Dialogue dialogue2("I'm More than a box!!!!" , "");
+    bn::vector<Dialogue, 5> dialogues1;
+    dialogues1.push_back(dialogue1);
+    dialogues1.push_back(dialogue2);
+    Interactable interactable1(interact, 100, 0, 32, 32, dialogues1);
 
     bn::vector<Interactable, 32> interactables;
     interactables.push_back(interactable1);
@@ -111,8 +117,7 @@ int main()
                 //if the player is colliding with the interactable object
                 if(AABB(x - 1, y + 7, player.getWidth(), player.getHeight() - 16, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
                     //set player's collided text to the interactable object's collided text
-                    player.setCollidedText1(interactables[i].getCollidedText1());
-                    player.setCollidedText2(interactables[i].getCollidedText2());
+                    player.setDialogues(interactables[i].getDialogues());
                     canMove = false;
                     break;
                 }
@@ -127,8 +132,7 @@ int main()
         {
             for(int i = 0; i < interactables.size(); i++){
                 if(AABB(x + 1, y + 7, player.getWidth(), player.getHeight() - 16, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
-                    player.setCollidedText1(interactables[i].getCollidedText1());
-                    player.setCollidedText2(interactables[i].getCollidedText2());
+                    player.setDialogues(interactables[i].getDialogues());
                     canMove = false;
                     break;
                 }
@@ -143,8 +147,7 @@ int main()
         {
             for(int i = 0; i < interactables.size(); i++){
                 if(AABB(x, y + 6, player.getWidth(), player.getHeight() - 16, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
-                    player.setCollidedText1(interactables[i].getCollidedText1());
-                    player.setCollidedText2(interactables[i].getCollidedText2());
+                    player.setDialogues(interactables[i].getDialogues());
                     canMove = false;
                     break;
                 }
@@ -159,8 +162,7 @@ int main()
         {
             for(int i = 0; i < interactables.size(); i++){
                 if(AABB(x, y + 8, player.getWidth(), player.getHeight() - 16, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
-                    player.setCollidedText1(interactables[i].getCollidedText1());
-                            player.setCollidedText2(interactables[i].getCollidedText2());
+                    player.setDialogues(interactables[i].getDialogues());
                     canMove = false;
                     break;
                 }
@@ -178,8 +180,10 @@ int main()
             player.standing();
         }
 
+        bn::vector<Dialogue, 5> dialogues = player.getDialogues();
+
         //checking player interaction with collidable objects
-        if( bn::keypad::a_pressed() && !player.getCollidedText1().empty())
+        if( bn::keypad::a_pressed() && !dialogues.empty())
         {
             //create text box at top of screen 
             text_l.set_visible(true);
@@ -190,16 +194,21 @@ int main()
             //use text generator to display player's collided text
             text_sprites.clear();
             text_generator.set_center_alignment();
-            text_generator.generate(0, -65, player.getCollidedText1(), text_sprites);
-            text_generator.generate(0, -50, player.getCollidedText2(), text_sprites);
 
+            
+
+            for(int i = 0; i < dialogues.size(); i++){
+                text_generator.generate(0, -65, dialogues[i].getText(), text_sprites);
+                text_generator.generate(0, -50, dialogues[i].getText2(), text_sprites);
+                bn::core::update();
+                while(!bn::keypad::b_pressed() && !bn::keypad::a_pressed()){
+                    bn::core::update();
+                }
+                text_sprites.clear();
+            }
+            
             //log the collided text
             // BN_LOG(player.getCollidedText());
-            bn::core::update();
-            while(!bn::keypad::b_pressed() && !bn::keypad::a_pressed()){
-                bn::core::update();
-            }
-            text_sprites.clear();
             text_l.set_visible(false);
             text_m.set_visible(false);
             text_r.set_visible(false);

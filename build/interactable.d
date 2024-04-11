@@ -46,7 +46,8 @@ interactable.o: C:/Users/jonah/GBA_01/ShiftGame/src/interactable.cpp \
  C:/Users/jonah/butano/butano/include/bn_camera_ptr.h \
  C:/Users/jonah/butano/butano/include/bn_string.h \
  C:/Users/jonah/butano/butano/include/bn_vector.h \
- C:/Users/jonah/butano/butano/include/bn_vector_fwd.h
+ C:/Users/jonah/butano/butano/include/bn_vector_fwd.h \
+ C:/Users/jonah/GBA_01/ShiftGame/src/dialogue.cpp
 C:/Users/jonah/butano/butano/include/bn_core.h:
 C:/Users/jonah/butano/butano/include/bn_span.h:
 C:/Users/jonah/butano/butano/include/bn_array.h:
@@ -95,3 +96,4 @@ C:/Users/jonah/butano/butano/include/bn_camera_ptr.h:
 C:/Users/jonah/butano/butano/include/bn_string.h:
 C:/Users/jonah/butano/butano/include/bn_vector.h:
 C:/Users/jonah/butano/butano/include/bn_vector_fwd.h:
+C:/Users/jonah/GBA_01/ShiftGame/src/dialogue.cpp:
