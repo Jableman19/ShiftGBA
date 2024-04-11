@@ -109,7 +109,7 @@ int main()
             //for every interactable object
             for(int i = 0; i < interactables.size(); i++){
                 //if the player is colliding with the interactable object
-                if(AABB(x - 1, y + 7, player.getWidth(), player.getHeight() - 14, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
+                if(AABB(x - 1, y + 7, player.getWidth(), player.getHeight() - 16, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
                     //set player's collided text to the interactable object's collided text
                     player.setCollidedText1(interactables[i].getCollidedText1());
                     player.setCollidedText2(interactables[i].getCollidedText2());
@@ -126,7 +126,7 @@ int main()
         else if( bn::keypad::right_held() )
         {
             for(int i = 0; i < interactables.size(); i++){
-                if(AABB(x + 1, y + 7, player.getWidth(), player.getHeight() - 14, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
+                if(AABB(x + 1, y + 7, player.getWidth(), player.getHeight() - 16, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
                     player.setCollidedText1(interactables[i].getCollidedText1());
                     player.setCollidedText2(interactables[i].getCollidedText2());
                     canMove = false;
@@ -142,7 +142,7 @@ int main()
         else if( bn::keypad::up_held() )
         {
             for(int i = 0; i < interactables.size(); i++){
-                if(AABB(x, y + 6, player.getWidth(), player.getHeight() - 14, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
+                if(AABB(x, y + 6, player.getWidth(), player.getHeight() - 16, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
                     player.setCollidedText1(interactables[i].getCollidedText1());
                     player.setCollidedText2(interactables[i].getCollidedText2());
                     canMove = false;
@@ -158,7 +158,7 @@ int main()
         else if( bn::keypad::down_held() )
         {
             for(int i = 0; i < interactables.size(); i++){
-                if(AABB(x, y + 6, player.getWidth(), player.getHeight() - 10, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
+                if(AABB(x, y + 8, player.getWidth(), player.getHeight() - 16, interactables[i].getX(), interactables[i].getY(), interactables[i].getWidth(), interactables[i].getHeight())){
                     player.setCollidedText1(interactables[i].getCollidedText1());
                             player.setCollidedText2(interactables[i].getCollidedText2());
                     canMove = false;
