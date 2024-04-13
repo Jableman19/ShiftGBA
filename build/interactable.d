@@ -28,26 +28,20 @@ interactable.o: C:/Users/jonah/GBA_01/ShiftGame/src/interactable.cpp \
  C:/Users/jonah/butano/butano/include/bn_log_backend.h \
  C:/Users/jonah/butano/butano/include/bn_string_view.h \
  C:/Users/jonah/butano/butano/include/bn_vblank_callback_type.h \
+ C:/Users/jonah/butano/butano/include/bn_sprites.h \
+ C:/Users/jonah/butano/butano/hw/include/bn_hw_sprites_constants.h \
+ C:/Users/jonah/butano/butano/include/bn_common.h \
  C:/Users/jonah/butano/butano/include/bn_sprite_ptr.h \
  C:/Users/jonah/butano/butano/include/bn_fixed_point.h \
  C:/Users/jonah/butano/butano/include/bn_point.h \
  C:/Users/jonah/butano/butano/include/bn_fixed_point_fwd.h \
- C:/Users/jonah/butano/butano/include/bn_sprites.h \
- C:/Users/jonah/butano/butano/hw/include/bn_hw_sprites_constants.h \
- C:/Users/jonah/butano/butano/include/bn_common.h \
- C:/Users/jonah/butano/butano/include/bn_sprite_tiles.h \
  C:/Users/jonah/butano/butano/include/bn_sprite_tiles_ptr.h \
- C:/Users/jonah/butano/butano/include/bn_display.h \
- C:/Users/jonah/butano/butano/include/bn_size.h \
- C:/Users/jonah/butano/butano/hw/include/bn_hw_display_constants.h \
- C:/Users/jonah/butano/butano/include/bn_time.h \
- C:/Users/jonah/butano/butano/include/bn_optional_fwd.h \
  C:/Users/jonah/butano/butano/include/bn_keypad.h \
  C:/Users/jonah/butano/butano/include/bn_camera_ptr.h \
- C:/Users/jonah/butano/butano/include/bn_string.h \
  C:/Users/jonah/butano/butano/include/bn_vector.h \
  C:/Users/jonah/butano/butano/include/bn_vector_fwd.h \
- C:/Users/jonah/GBA_01/ShiftGame/src/dialogue.cpp
+ C:/Users/jonah/GBA_01/ShiftGame/src/dialogue.cpp \
+ C:/Users/jonah/butano/butano/include/bn_string.h
 C:/Users/jonah/butano/butano/include/bn_core.h:
 C:/Users/jonah/butano/butano/include/bn_span.h:
 C:/Users/jonah/butano/butano/include/bn_array.h:
@@ -77,23 +71,17 @@ C:/Users/jonah/butano/butano/include/bn_config_log.h:
 C:/Users/jonah/butano/butano/include/bn_log_backend.h:
 C:/Users/jonah/butano/butano/include/bn_string_view.h:
 C:/Users/jonah/butano/butano/include/bn_vblank_callback_type.h:
+C:/Users/jonah/butano/butano/include/bn_sprites.h:
+C:/Users/jonah/butano/butano/hw/include/bn_hw_sprites_constants.h:
+C:/Users/jonah/butano/butano/include/bn_common.h:
 C:/Users/jonah/butano/butano/include/bn_sprite_ptr.h:
 C:/Users/jonah/butano/butano/include/bn_fixed_point.h:
 C:/Users/jonah/butano/butano/include/bn_point.h:
 C:/Users/jonah/butano/butano/include/bn_fixed_point_fwd.h:
-C:/Users/jonah/butano/butano/include/bn_sprites.h:
-C:/Users/jonah/butano/butano/hw/include/bn_hw_sprites_constants.h:
-C:/Users/jonah/butano/butano/include/bn_common.h:
-C:/Users/jonah/butano/butano/include/bn_sprite_tiles.h:
 C:/Users/jonah/butano/butano/include/bn_sprite_tiles_ptr.h:
-C:/Users/jonah/butano/butano/include/bn_display.h:
-C:/Users/jonah/butano/butano/include/bn_size.h:
-C:/Users/jonah/butano/butano/hw/include/bn_hw_display_constants.h:
-C:/Users/jonah/butano/butano/include/bn_time.h:
-C:/Users/jonah/butano/butano/include/bn_optional_fwd.h:
 C:/Users/jonah/butano/butano/include/bn_keypad.h:
 C:/Users/jonah/butano/butano/include/bn_camera_ptr.h:
-C:/Users/jonah/butano/butano/include/bn_string.h:
 C:/Users/jonah/butano/butano/include/bn_vector.h:
 C:/Users/jonah/butano/butano/include/bn_vector_fwd.h:
 C:/Users/jonah/GBA_01/ShiftGame/src/dialogue.cpp:
+C:/Users/jonah/butano/butano/include/bn_string.h:

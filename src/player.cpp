@@ -14,11 +14,12 @@ class Player {
         int _lastSprite = 0;
         int _lastDir = 0;
         bn::camera_ptr _camera;
-        bn::vector<Dialogue, 3> _dialogues;
+        bn::vector<Dialogue, 2> _dialogues;
 
     public:
 
         int spriteChangeSpeed = 28;
+        bool autoInteracted = false;
 
         Player(bn::sprite_ptr sprite, int x, int y, int width, int height, bn::camera_ptr camera) : _sprite(sprite), _x(x), _y(y), _width(width), _height(height), _camera(camera) {
             _sprite.set_position(_x, _y);
@@ -204,7 +205,7 @@ class Player {
             return _sprite;
         }
 
-        bn::vector<Dialogue, 32> getDialogues(){
+        bn::vector<Dialogue, 2> getDialogues(){
             return _dialogues;
         }
 
