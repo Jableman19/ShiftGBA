@@ -2,6 +2,7 @@
 #include "collidingSpace.cpp"
 #include "bn_regular_bg_items_floor.h"
 #include "bn_regular_bg_items_shift.h"
+#include "bn_regular_bg_items_start.h"
 #include "bn_regular_bg_ptr.h"
 #include "bn_sprite_items_basic.h"
 #include "bn_sprite_items_psprite.h"
@@ -17,6 +18,7 @@
 #include "bn_sprite_items_printer.h"
 #include "bn_sprite_items_guitar.h"
 #include "bn_sprite_items_piano.h"
+#include "bn_sprite_items_wallart.h"
 #include "bn_sprite_items_hei.h"
 #include "bn_sprite_items_wall2.h"
 #include "bn_regular_bg_items_rug.h"
@@ -31,6 +33,10 @@
 #include "bn_sprite_items_bookshelf.h"
 #include "bn_sprite_items_games.h"
 #include "bn_sprite_items_screen.h"
+#include "bn_sprite_items_futon.h"
+#include "bn_sprite_items_floormat.h"
+#include "bn_sprite_items_bean.h"
+#include "bn_sprite_items_corner.h"
 #include "common_variable_8x8_sprite_font.h"
 #include <bn_sprite_palette_item.h>
 #include <bn_sprite_palette_ptr.h>
@@ -38,6 +44,7 @@
 #include <bn_compression_type.h>
 #include <bn_bpp_mode.h>
 #include "bn_rect_window.h"
+#include "bn_sound_items.h"
 
 bool AABB(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2){
     //axis aligned bounding box collision detection, x and y are center points
@@ -45,6 +52,8 @@ bool AABB(int x1, int y1, int w1, int h1, int x2, int y2, int w2, int h2){
 }
 
 void intro(){
+    bn::regular_bg_ptr start_show = bn::regular_bg_items::start.create_bg(0, 0);
+    start_show.set_visible(false);
     bn::regular_bg_ptr intro_show = bn::regular_bg_items::shift.create_bg(0, 0);
     int framesInIntro = 0;
 
@@ -54,11 +63,16 @@ void intro(){
     }
 
     intro_show.set_visible(false);
+    start_show.set_visible(true);
+    while(!bn::keypad::start_pressed()){
+        bn::core::update();
+    }
+    bn::sound_items::click.play();
 }
 
 int entryway(int px, int py){
     bn::vector<CollidingSpace, 12> collidingSpaces;
-    bn::vector<Interactable, 10> interactables;
+    bn::vector<Interactable, 11> interactables;
     bn::camera_ptr camera = bn::camera_ptr::create(px, py);
 
 
@@ -116,7 +130,14 @@ int entryway(int px, int py){
     Interactable kitchenI(100, -125, 5, 5, kitchenD);
     kitchenI._auto = true;
     interactables.push_back(kitchenI);
-    
+
+    bn::sprite_ptr wallart = bn::sprite_items::wallart.create_sprite(148, -137);
+    wallart.set_camera(camera);
+    Dialogue wallartD("Beautiful art and countless photos line", "the walls. These are our memories.");
+    bn::vector<Dialogue, 2> wallartDialogues;
+    wallartDialogues.push_back(wallartD);
+    Interactable wallartI(150, -120, 76, 3, wallartDialogues);
+    interactables.push_back(wallartI);
 
     //ITEMS
     bn::sprite_ptr bookshelf = bn::sprite_items::bookshelf.create_sprite(52, -40);
@@ -267,6 +288,8 @@ int entryway(int px, int py){
     Player player(psprite, px, py, 14, 20, camera);
     player.spriteChange(3);
 
+    int framesWalked = 45;
+
     while(true)
     {
         bn::core::update();
@@ -309,6 +332,7 @@ int entryway(int px, int py){
             if(canMove){
                 player.moveRequest(x - 1, y);
                 player.clearText();
+                framesWalked++;
             }
         }
         else if( bn::keypad::right_held() )
@@ -338,6 +362,7 @@ int entryway(int px, int py){
             if(canMove){
                 player.moveRequest(x + 1, y);
                 player.clearText();
+                framesWalked++;
             }
         }
         else if( bn::keypad::up_held() )
@@ -367,6 +392,7 @@ int entryway(int px, int py){
             if(canMove){
                 player.moveRequest(x, y - 1);
                 player.clearText();
+                framesWalked++;
             }
         }
         else if( bn::keypad::down_held() )
@@ -394,6 +420,7 @@ int entryway(int px, int py){
             }
             player.spriteChange(1);
             if(canMove){
+                framesWalked++;
                 player.moveRequest(x, y + 1);
                 player.clearText();
             }
@@ -404,12 +431,19 @@ int entryway(int px, int py){
         if(!canMove){
             player.standing();
         }
+        else{
+            if(framesWalked >= 20){
+                bn::sound_items::walk.play();
+                framesWalked = 0;
+            }
+        }
 
         bn::vector<Dialogue, 2> dialogues = player.getDialogues();
 
         //checking player interaction with collidable objects
         if( (bn::keypad::a_pressed() && !dialogues.empty()) || player.autoInteracted)
         {
+            bn::sound_items::click.play();
             //create text box at top of screen 
             text_l.set_visible(true);
             text_m.set_visible(true);
@@ -526,6 +560,31 @@ int attic(){
     Interactable projectorI(0, -50, 16, 16, projectorD);
     interactables.push_back(projectorI);
 
+    bn::sprite_ptr corner = bn::sprite_items::corner.create_sprite(65, -90);
+    corner.set_camera(camera);
+    CollidingSpace cornerCS(65, -90, 16, 32);
+    collidingSpaces.push_back(cornerCS);
+
+    bn::sprite_ptr futon = bn::sprite_items::futon.create_sprite(60, -55);
+    futon.set_camera(camera);
+    bn::vector<Dialogue, 2> futonD;
+    Dialogue futonD1("The fold out futon - unfortunate guests", "find themselves resting here.");
+    Dialogue futonD2("But it's also a place for late night talks", "and movie nights.");
+    futonD.push_back(futonD1);
+    futonD.push_back(futonD2);
+    Interactable futonI(65, -50, 23, 45, futonD);
+    interactables.push_back(futonI);
+
+    bn::sprite_ptr floormat = bn::sprite_items::floormat.create_sprite(-35, -103);
+    floormat.set_camera(camera);
+
+    bn::sprite_ptr bean = bn::sprite_items::bean.create_sprite(30, -118);
+    bean.set_camera(camera);
+    bn::vector<Dialogue, 2> beanD;
+    Dialogue beanD1("This is one comfy-ass beanbag.", "Naps may be accidentally extended here.");
+    beanD.push_back(beanD1);
+    Interactable beanI(30,-118, 35, 32, beanD);
+    interactables.push_back(beanI);
 
 
 
@@ -577,6 +636,9 @@ int attic(){
 
 
     Player player(psprite, 0, 20, 14, 20, camera);
+    player.spriteChange(3);
+
+    int framesWalked = 45;
 
     while(true)
     {
@@ -618,6 +680,7 @@ int attic(){
             }
             player.spriteChange(2);
             if(canMove){
+                framesWalked++;
                 player.moveRequest(x - 1, y);
                 player.clearText();
             }
@@ -647,6 +710,7 @@ int attic(){
             }
             player.spriteChange(0);
             if(canMove){
+                framesWalked++;
                 player.moveRequest(x + 1, y);
                 player.clearText();
             }
@@ -676,6 +740,7 @@ int attic(){
             }
             player.spriteChange(3);
             if(canMove){
+                framesWalked++;
                 player.moveRequest(x, y - 1);
                 player.clearText();
             }
@@ -705,6 +770,7 @@ int attic(){
             }
             player.spriteChange(1);
             if(canMove){
+                framesWalked++;
                 player.moveRequest(x, y + 1);
                 player.clearText();
             }
@@ -715,12 +781,20 @@ int attic(){
         if(!canMove){
             player.standing();
         }
+        else{
+            if(framesWalked >= 20){
+                bn::sound_items::walk.play();
+                framesWalked = 0;
+            }
+        } 
+            
 
         bn::vector<Dialogue, 2> dialogues = player.getDialogues();
 
         //checking player interaction with collidable objects
         if( (bn::keypad::a_pressed() && !dialogues.empty()) || player.autoInteracted)
         {
+            bn::sound_items::click.play();
             //create text box at top of screen 
             text_l.set_visible(true);
             text_m.set_visible(true);

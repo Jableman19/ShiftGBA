@@ -69,6 +69,7 @@ main.o: C:/Users/jonah/GBA_01/ShiftGame/src/main.cpp \
  C:/Users/jonah/butano/butano/include/bn_regular_bg_map_cell.h \
  C:/Users/jonah/butano/butano/include/bn_regular_bg_tiles_item.h \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_regular_bg_items_shift.h \
+ C:/Users/jonah/GBA_01/ShiftGame/build/bn_regular_bg_items_start.h \
  C:/Users/jonah/butano/butano/include/bn_regular_bg_ptr.h \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_basic.h \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_textl.h \
@@ -83,6 +84,7 @@ main.o: C:/Users/jonah/GBA_01/ShiftGame/src/main.cpp \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_printer.h \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_guitar.h \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_piano.h \
+ C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_wallart.h \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_hei.h \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_wall2.h \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_regular_bg_items_rug.h \
@@ -97,6 +99,10 @@ main.o: C:/Users/jonah/GBA_01/ShiftGame/src/main.cpp \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_bookshelf.h \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_games.h \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_screen.h \
+ C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_futon.h \
+ C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_floormat.h \
+ C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_bean.h \
+ C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_corner.h \
  C:/Users/jonah/butano/common/include/common_variable_8x8_sprite_font.h \
  C:/Users/jonah/butano/butano/include/bn_sprite_font.h \
  C:/Users/jonah/butano/butano/include/bn_utf8_characters_map.h \
@@ -116,7 +122,10 @@ main.o: C:/Users/jonah/GBA_01/ShiftGame/src/main.cpp \
  C:/Users/jonah/butano/butano/include/bn_window.h \
  C:/Users/jonah/butano/butano/include/bn_top_left_fixed_rect.h \
  C:/Users/jonah/butano/butano/include/bn_top_left_rect.h \
- C:/Users/jonah/butano/butano/include/bn_top_left_fixed_rect_fwd.h
+ C:/Users/jonah/butano/butano/include/bn_top_left_fixed_rect_fwd.h \
+ C:/Users/jonah/GBA_01/ShiftGame/build/bn_sound_items.h \
+ C:/Users/jonah/butano/butano/include/bn_sound_item.h \
+ C:/Users/jonah/butano/butano/include/bn_sound_handle.h
 C:/Users/jonah/GBA_01/ShiftGame/src/player.cpp:
 C:/Users/jonah/GBA_01/ShiftGame/src/interactable.cpp:
 C:/Users/jonah/butano/butano/include/bn_core.h:
@@ -187,6 +196,7 @@ C:/Users/jonah/butano/butano/include/bn_size.h:
 C:/Users/jonah/butano/butano/include/bn_regular_bg_map_cell.h:
 C:/Users/jonah/butano/butano/include/bn_regular_bg_tiles_item.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_regular_bg_items_shift.h:
+C:/Users/jonah/GBA_01/ShiftGame/build/bn_regular_bg_items_start.h:
 C:/Users/jonah/butano/butano/include/bn_regular_bg_ptr.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_basic.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_textl.h:
@@ -201,6 +211,7 @@ C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_chairs.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_printer.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_guitar.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_piano.h:
+C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_wallart.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_hei.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_wall2.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_regular_bg_items_rug.h:
@@ -215,6 +226,10 @@ C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_projector.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_bookshelf.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_games.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_screen.h:
+C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_futon.h:
+C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_floormat.h:
+C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_bean.h:
+C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_corner.h:
 C:/Users/jonah/butano/common/include/common_variable_8x8_sprite_font.h:
 C:/Users/jonah/butano/butano/include/bn_sprite_font.h:
 C:/Users/jonah/butano/butano/include/bn_utf8_characters_map.h:
@@ -235,3 +250,6 @@ C:/Users/jonah/butano/butano/include/bn_window.h:
 C:/Users/jonah/butano/butano/include/bn_top_left_fixed_rect.h:
 C:/Users/jonah/butano/butano/include/bn_top_left_rect.h:
 C:/Users/jonah/butano/butano/include/bn_top_left_fixed_rect_fwd.h:
+C:/Users/jonah/GBA_01/ShiftGame/build/bn_sound_items.h:
+C:/Users/jonah/butano/butano/include/bn_sound_item.h:
+C:/Users/jonah/butano/butano/include/bn_sound_handle.h:
