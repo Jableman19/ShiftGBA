@@ -93,6 +93,7 @@ main.o: C:/Users/jonah/GBA_01/ShiftGame/src/main.cpp \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_thinwall.h \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_door.h \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_sidedoor.h \
+ C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_sidedoor2.h \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_stairs.h \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_black.h \
  C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_projector.h \
@@ -220,6 +221,7 @@ C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_wall.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_thinwall.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_door.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_sidedoor.h:
+C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_sidedoor2.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_stairs.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_black.h:
 C:/Users/jonah/GBA_01/ShiftGame/build/bn_sprite_items_projector.h:

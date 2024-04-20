@@ -27,6 +27,7 @@
 #include "bn_sprite_items_thinwall.h"
 #include "bn_sprite_items_door.h"
 #include "bn_sprite_items_sidedoor.h"
+#include "bn_sprite_items_sidedoor2.h"
 #include "bn_sprite_items_stairs.h"
 #include "bn_sprite_items_black.h"
 #include "bn_sprite_items_projector.h"
@@ -115,12 +116,18 @@ int entryway(int px, int py){
     wallV2.set_camera(camera);
     bn::sprite_ptr door = bn::sprite_items::door.create_sprite(100, -150);
     door.set_camera(camera);
-    bn::sprite_ptr sideDoor = bn::sprite_items::sidedoor.create_sprite(99, -80);
-    sideDoor.set_camera(camera);
-    Dialogue doorD("That's Jonah's room - looks like it's locked!", "He made this sim. Thanks for playing ;)");
+    bn::sprite_ptr sideDoor2 = bn::sprite_items::sidedoor.create_sprite(68, -80);
+    sideDoor2.set_camera(camera);
+
+    CollidingSpace doorCS(84, -150, 16, 16);
+    collidingSpaces.push_back(doorCS);
+
+    // bn::sprite_ptr sideDoor = bn::sprite_items::sidedoor.create_sprite(82, -80);
+    // sideDoor.set_camera(camera);
+    Dialogue doorD("That's the way to Jonah's room...", "He made this sim. Thanks for playing!! ;)");
     bn::vector<Dialogue, 2> doorDialogues;
     doorDialogues.push_back(doorD);
-    Interactable doorI(82, -75, 2, 13, doorDialogues);
+    Interactable doorI(82, -78, 2, 20, doorDialogues);
     doorI._auto = true;
     interactables.push_back(doorI);
 
