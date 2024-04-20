@@ -1,0 +1,1 @@
+This project was a quick ~1 week project to try to make a GBA game that actually runs on a real device. Using Butano engine, written C++ code, and GIMP for sprites, I pulled together this replica of my college house that is being torn down in May 2024. RIP
